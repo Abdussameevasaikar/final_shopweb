@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Customers | VASAIKAR BAKALA</title>
+
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🏪
+
+        <h2>VASAIKAR BAKALA</h2>
+
+    </div>
+
+    <ul>
+
+        <li onclick="location.href='dashboard.html'">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Dashboard
+
+        </li>
+
+        <li onclick="location.href='inventory.html'">
+
+            <i class="fa-solid fa-box"></i>
+
+            Inventory
+
+        </li>
+
+        <li onclick="location.href='billing.html'">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            Billing
+
+        </li>
+
+        <li class="active">
+
+            <i class="fa-solid fa-users"></i>
+
+            Customers
+
+        </li>
+
+        <li onclick="location.href='reports.html'">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Reports
+
+        </li>
+
+    </ul>
+
+<button type="button" id="logoutBtn" class="logout-btn">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Logout</span>
+</button>
+
+</aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+
+            <h1>
+
+                <i class="fa-solid fa-users"></i>
+
+                Customers
+
+            </h1>
+
+
+            <!-- ADD CUSTOMER -->
+
+            <button
+                class="add-btn"
+                onclick="location.href='add_customer.html'">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Customer
+
+            </button>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             SEARCH
+             ================================================= -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search Customer..."
+                onkeyup="searchCustomers()">
+
+        </div>
+
+
+
+        <!-- =================================================
+             CUSTOMER TABLE
+             ================================================= -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>No.</th>
+
+                        <th>Name</th>
+
+                        <th>Mobile</th>
+
+                        <th>Pending Amount</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="customerTable">
+
+                    <!-- Customers loaded by customer.js -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="js/customer.js"></script>
+
+
+</body>
+
+<script>
+document.getElementById("logoutBtn")?.addEventListener("click", async () => {
+    if (!confirm("Are you sure you want to log out?")) return;
+
+    try {
+        const response = await fetch("/auth/logout", {
+            method: "POST",
+            credentials: "same-origin"
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            window.location.replace("/login.html");
+        } else {
+            alert(result.message || "Unable to log out.");
+        }
+    } catch (error) {
+        alert("Unable to connect to the server. Please try again.");
+    }
+});
+</script>
+
+</html>

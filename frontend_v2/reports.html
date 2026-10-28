@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | VASAIKAR BAKALA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            🏪
+
+            <h2>VASAIKAR BAKALA</h2>
+
+        </div>
+
+
+        <ul>
+
+            <li onclick="location.href='dashboard.html'">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </li>
+
+
+            <li onclick="location.href='inventory.html'">
+                <i class="fa-solid fa-box"></i>
+                Inventory
+            </li>
+
+
+            <li onclick="location.href='billing.html'">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Billing
+            </li>
+
+
+            <li onclick="location.href='customer.html'">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </li>
+
+
+            <li class="active">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reports
+
+            </li>
+
+        </ul>
+
+        <button type="button" id="logoutBtn" class="logout-btn">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Logout</span>
+</button>
+
+    </aside>
+
+
+
+    <!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+    <main class="main reports-page">
+
+
+        <!-- =====================================================
+         PAGE HEADER
+         ===================================================== -->
+
+        <div class="reports-title-row">
+
+
+            <div class="reports-title-left">
+
+                <h1>
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    Reports
+
+                </h1>
+
+                <p>
+                    Analyze sales, payments and business performance.
+                </p>
+
+            </div>
+
+
+            <button class="report-refresh-btn" id="refreshReportBtn">
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+                Refresh
+
+            </button>
+
+            <a href="sales_history.html" class="report-refresh-btn"
+                style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Sales History
+            </a>
+
+        </div>
+
+
+
+        <!-- =====================================================
+         REPORT CONTROLS
+         ===================================================== -->
+
+        <div class="report-control-card">
+
+
+            <div class="report-control-top">
+
+
+                <div class="report-control-heading">
+
+                    <i class="fa-solid fa-sliders"></i>
+
+                    Report Period
+
+                </div>
+
+
+                <div class="report-date-box">
+
+                    <label for="reportDate">
+                        Date
+                    </label>
+
+                    <input type="date" id="reportDate">
+
+                </div>
+
+
+            </div>
+
+
+            <div class="report-period-buttons">
+
+
+                <button class="report-period-btn active" data-period="day">
+
+                    <i class="fa-solid fa-calendar-day"></i>
+
+                    Day
+
+                </button>
+
+
+                <button class="report-period-btn" data-period="weekly">
+
+                    <i class="fa-solid fa-calendar-week"></i>
+
+                    Weekly
+
+                </button>
+
+
+                <button class="report-period-btn" data-period="monthly">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    Monthly
+
+                </button>
+
+
+                <button class="report-period-btn" data-period="annual">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Annual
+
+                </button>
+
+
+            </div>
+
+
+            <div class="report-period-label" id="periodDisplay">
+                Loading report...
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+         ERROR
+         ===================================================== -->
+
+        <div class="reports-error" id="errorMessage"></div>
+
+
+
+        <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+        <section class="report-hero">
+
+            <div class="report-hero-content">
+
+                <div class="report-hero-label">
+                    Total Revenue
+                </div>
+
+                <div class="report-hero-value" id="heroRevenue">
+                    ₹0.00
+                </div>
+
+                <div class="report-hero-subtitle" id="heroSubtitle">
+                    Selected report period
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+         KPI CARDS
+         ===================================================== -->
+
+        <section class="report-kpi-grid">
+
+
+            <!-- CASH -->
+
+            <div class="report-kpi">
+
+                <div class="report-kpi-icon">
+
+                    <i class="fa-solid fa-money-bill-wave"></i>
+
+                </div>
+
+                <div class="report-kpi-title">
+                    Cash Income
+                </div>
+
+                <div class="report-kpi-value" id="cashIncome">
+                    ₹0.00
+                </div>
+
+            </div>
+
+
+            <!-- UPI -->
+
+            <div class="report-kpi">
+
+                <div class="report-kpi-icon">
+
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+
+                </div>
+
+                <div class="report-kpi-title">
+                    UPI Income
+                </div>
+
+                <div class="report-kpi-value" id="upiIncome">
+                    ₹0.00
+                </div>
+
+            </div>
+
+
+            <!-- CREDIT SALES -->
+
+            <div class="report-kpi">
+
+                <div class="report-kpi-icon">
+
+                    <i class="fa-solid fa-book"></i>
+
+                </div>
+
+                <div class="report-kpi-title">
+                    Credit Sales
+                </div>
+
+                <div class="report-kpi-value" id="creditSales">
+                    ₹0.00
+                </div>
+
+            </div>
+
+
+            <!-- BILLS -->
+
+            <div class="report-kpi">
+
+                <div class="report-kpi-icon">
+
+                    <i class="fa-solid fa-file-invoice"></i>
+
+                </div>
+
+                <div class="report-kpi-title">
+                    Total Bills
+                </div>
+
+                <div class="report-kpi-value" id="totalBills">
+                    0
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+         ANALYTICS
+         ===================================================== -->
+
+        <section class="report-analytics-grid">
+
+
+            <!-- PAYMENT BREAKDOWN -->
+
+            <div class="report-panel">
+
+
+                <div class="report-panel-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        Payment Breakdown
+
+                    </h3>
+
+                    <span>
+                        Selected period
+                    </span>
+
+                </div>
+
+
+                <!-- CASH -->
+
+                <div class="payment-row">
+
+                    <div class="payment-row-top">
+
+                        <div class="payment-name">
+
+                            <i class="fa-solid fa-money-bill"></i>
+
+                            Cash
+
+                        </div>
+
+                        <div class="payment-amount" id="cashBreakdown">
+                            ₹0.00
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-bar">
+
+                        <div class="payment-fill cash" id="cashBar"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- UPI -->
+
+                <div class="payment-row">
+
+                    <div class="payment-row-top">
+
+                        <div class="payment-name">
+
+                            <i class="fa-solid fa-mobile-screen"></i>
+
+                            UPI
+
+                        </div>
+
+                        <div class="payment-amount" id="upiBreakdown">
+                            ₹0.00
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-bar">
+
+                        <div class="payment-fill upi" id="upiBar"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CREDIT -->
+
+                <div class="payment-row">
+
+                    <div class="payment-row-top">
+
+                        <div class="payment-name">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Credit
+
+                        </div>
+
+                        <div class="payment-amount" id="creditBreakdown">
+                            ₹0.00
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-bar">
+
+                        <div class="payment-fill credit" id="creditBar"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK SUMMARY -->
+
+            <div class="report-panel">
+
+
+                <div class="report-panel-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        Quick Summary
+
+                    </h3>
+
+                </div>
+
+
+                <div class="quick-summary-list">
+
+
+                    <div class="quick-summary-item">
+
+                        <i class="fa-solid fa-box"></i>
+
+                        <div>
+
+                            <strong>
+                                Stock Sold
+                            </strong>
+
+                            <span id="totalStockSold">
+                                0
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="quick-summary-item">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                        <div>
+
+                            <strong>
+                                Bills Generated
+                            </strong>
+
+                            <span id="summaryBills">
+                                0 bills
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="quick-summary-item">
+
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                        <div>
+
+                            <strong>
+                                Average Bill
+                            </strong>
+
+                            <span id="averageBill">
+                                ₹0.00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CREDIT ALERT -->
+
+                <div class="credit-alert">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    <div>
+
+                        <strong>
+                            Overall Credit Pending
+                        </strong>
+
+                        <span id="creditPending">
+                            ₹0.00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="js/reports.js"></script>
+
+</body>
+
+<script>
+document.getElementById("logoutBtn")?.addEventListener("click", async () => {
+    if (!confirm("Are you sure you want to log out?")) return;
+
+    try {
+        const response = await fetch("/auth/logout", {
+            method: "POST",
+            credentials: "same-origin"
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            window.location.replace("/login.html");
+        } else {
+            alert(result.message || "Unable to log out.");
+        }
+    } catch (error) {
+        alert("Unable to connect to the server. Please try again.");
+    }
+});
+</script>
+
+</html>

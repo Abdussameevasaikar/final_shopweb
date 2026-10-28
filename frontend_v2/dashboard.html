@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | VASAIKAR BAKALA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                🏪  
+
+                <h2>VASAIKAR BAKALA</h2>
+
+            </div>
+
+            <ul>
+
+                <li class="active" onclick="location.href='dashboard.html'">
+
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+
+                </li>
+
+                <li onclick="location.href='inventory.html'">
+
+                    <i class="fa-solid fa-box"></i> Inventory
+
+                </li>
+
+                <li onclick="location.href='billing.html'">
+
+                    <i class="fa-solid fa-cart-shopping"></i> Billing
+
+                </li>
+
+                <li onclick="location.href='customer.html'">
+
+                    <i class="fa-solid fa-users"></i> Customers
+
+                </li>
+
+                <li onclick="location.href='reports.html'">
+
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                    
+                </li>
+
+            </ul>
+
+            
+<button type="button" id="logoutBtn" class="logout-btn">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Logout</span>
+</button>
+
+
+        </aside>
+
+        <!-- Main -->
+
+        <main class="main">
+
+            <header class="header">
+
+                <h1>Dashboard</h1>
+
+            </header>
+
+            <div class="cards">
+
+                <div class="card" onclick="location.href='inventory.html'">
+
+                    <h3>📦 Total Products</h3>
+
+                    <h2 id="totalItems">0</h2>
+
+                    <p>Different Products</p>
+
+                </div>
+
+                <div class="card" onclick="location.href='inventory.html'">
+
+                    <h3>📦 Total Stock</h3>
+
+                    <h2 id="totalStock">0</h2>
+
+                    <p>Total Quantity</p>
+
+                </div>
+
+                <div class="card" onclick="location.href='inventory.html'">
+
+                    <h3>💰 Total Stock Value</h3>
+
+                    <h2 id="stockValue">₹0</h2>
+
+                    <p>Inventory Value</p>
+
+                </div>
+
+                <div class="card" onclick="location.href='customer.html'">
+
+                    <h3>👥 Customers</h3>
+
+                    <h2 id="totalCustomers">0</h2>
+
+                    <p>Total Customers</p>
+
+                </div>
+
+                <div class="card" onclick="location.href='billing.html'">
+
+                    <h3>🧾 Billing</h3>
+
+                    <h2>Create</h2>
+
+                    <p>Generate Bill</p>
+
+                </div>
+
+                <div class="card" onclick="location.href='reports.html'">
+
+                    <h3>📊 Reports</h3>
+
+                    <h2>View</h2>
+
+                    <p>Sales Reports</p>
+
+                </div>
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Recent Activity</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="activityTable">
+
+                        <tr>
+
+                            <td>
+                                No recent activity
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="js/dashboard.js"></script>
+
+    
+<script>
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    const confirmed = confirm("Are you sure you want to log out?");
+
+    if (!confirmed) return;
+
+    try {
+        const response = await fetch("/auth/logout", {
+            method: "POST",
+            credentials: "same-origin"
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            window.location.replace("/login.html");
+        } else {
+            alert(result.message || "Unable to log out.");
+        }
+    } catch (error) {
+        alert("Unable to connect to the server. Please try again.");
+    }
+});
+</script>
+
+
+</body>
+
+</html>

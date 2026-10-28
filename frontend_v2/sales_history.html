@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales History | VASAIKAR BAKALA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="sales-history-page">
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-store"></i>
+            <h2>VASAIKAR<br>BAKALA</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
+            <a href="inventory.html" class="nav-link"><i class="fa-solid fa-box"></i><span>Inventory</span></a>
+            <a href="billing.html" class="nav-link"><i class="fa-solid fa-cart-shopping"></i><span>Billing</span></a>
+            <a href="customer.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Customers</span></a>
+            <a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-column"></i><span>Reports</span></a>
+            <a href="sales_history.html" class="nav-link active"><i class="fa-solid fa-clock-rotate-left"></i><span>Sales History</span></a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="history-header">
+            <div class="history-heading">
+                <h1><i class="fa-solid fa-clock-rotate-left"></i> Sales History</h1>
+            </div>
+            <p class="history-subtitle">Review past bills, customer names and payment methods.</p>
+        </header>
+
+        <section class="history-filters">
+            <div class="filter-group search-group">
+                <label for="historySearch">Search</label>
+                <input type="search" id="historySearch" placeholder="Invoice or customer name">
+            </div>
+            <div class="filter-group">
+                <label for="historyPayment">Payment method</label>
+                <select id="historyPayment">
+                    <option value="all">All methods</option>
+                    <option value="cash">Cash</option>
+                    <option value="upi">UPI</option>
+                    <option value="credit">Credit / Khata</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="historyFrom">From date</label>
+                <input type="date" id="historyFrom">
+            </div>
+            <div class="filter-group">
+                <label for="historyTo">To date</label>
+                <input type="date" id="historyTo">
+            </div>
+            <button type="button" id="historyReset" class="history-btn"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            <button type="button" id="historyRefresh" class="history-btn"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        </section>
+
+        <p id="historyStatus" class="history-status" aria-live="polite">Loading sales history...</p>
+
+        <section class="history-table-container">
+            <div class="table-scroll">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice No.</th>
+                            <th>Date &amp; Time</th>
+                            <th>Customer Name</th>
+                            <th>Payment Method</th>
+                            <th>Bill Amount</th>
+                            <th>Payment Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <tr><td colspan="6" class="table-message">Loading sales...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="historyModal" class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
+        <div class="history-modal-content">
+            <div class="history-modal-header">
+                <h2 id="historyModalTitle">Bill Details</h2>
+                <button type="button" id="historyClose" class="history-close" aria-label="Close bill details">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="historyBillDetails"></div>
+        </div>
+    </div>
+
+    <script src="js/sales_history.js"></script>
+</body>
+</html>

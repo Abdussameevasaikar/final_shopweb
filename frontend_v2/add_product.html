@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Product - Vasaikar Bakala</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+<div class="container">
+    <!-- ================= SIDEBAR ================= -->
+
+    ```html
+<!-- SIDEBAR — STANDARD LAYOUT -->
+<aside class="sidebar">
+
+    <div class="logo">
+        🏪
+        <h2>VASAIKAR BAKALA</h2>
+    </div>
+
+    <ul>
+        <li onclick="location.href='dashboard.html'">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </li>
+
+        <li onclick="location.href='inventory.html'">
+            <i class="fa-solid fa-box"></i>
+            Inventory
+        </li>
+
+        <li onclick="location.href='billing.html'">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Billing
+        </li>
+
+        <li onclick="location.href='customer.html'">
+            <i class="fa-solid fa-users"></i>
+            Customers
+        </li>
+
+        <li onclick="location.href='reports.html'">
+            <i class="fa-solid fa-chart-column"></i>
+            Reports
+        </li>
+    </ul>
+
+</aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h1>
+                <i class="fa-solid fa-plus"></i>
+                Add Product
+            </h1>
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="form-container">
+
+            <form id="productForm">
+
+
+                <!-- PRODUCT NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Product Name
+                    </label>
+
+                    <input type="text" id="name" placeholder="Enter product name" required>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Category
+                    </label>
+
+                    <select id="category">
+
+                        <option value="">
+                            Select Existing Category
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- NEW CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="newCategory">
+                        Or Create New Category
+                    </label>
+
+                    <input type="text" id="newCategory" placeholder="Example: Biscuits, Rice, Snacks">
+
+                    <small>
+                        Leave the dropdown empty and enter a new category here.
+                    </small>
+
+                </div>
+
+
+                <!-- VARIANT / PACK -->
+
+                <div class="form-group">
+
+                    <label for="variant">
+                        Variant / Pack
+                    </label>
+
+                    <input type="text" id="variant" placeholder="Example: 500 g, 1 kg, ₹5 Pack" required>
+                    <small>
+                        Enter the pack size or variant used to identify this product.
+                    </small>
+                </div>
+
+
+                <!-- QUANTITY -->
+
+                <div class="form-group">
+
+                    <label for="quantity">
+                        Stock Quantity
+                    </label>
+
+                    <input type="number" id="quantity" min="0" step="0.001" placeholder="Enter stock quantity" required>
+
+                </div>
+
+
+                <!-- ================= UNIT ================= -->
+
+                <div class="form-group">
+
+                    <label for="unit">
+                        Unit
+                    </label>
+
+                    <select id="unit" required>
+
+                        <option value="">
+                            Select Unit
+                        </option>
+
+                        <option value="kg">
+                            Kilogram (kg)
+                        </option>
+
+                        <option value="g">
+                            Gram (g)
+                        </option>
+
+                        <option value="L">
+                            Litre (L)
+                        </option>
+
+                        <option value="ml">
+                            Millilitre (ml)
+                        </option>
+
+                        <option value="piece">
+                            Piece
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Choose the unit used for this product.
+                    </small>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="form-group">
+
+                    <label for="price">
+                        Price per Unit (₹)
+                    </label>
+
+                    <input type="number" id="price" min="0" step="0.01" placeholder="Enter price" required>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-buttons">
+
+                    <button type="submit" class="btn-primary">
+
+                        <i class="fa-solid fa-save"></i>
+
+                        Save Product
+
+                    </button>
+
+
+                    <button type="button" class="btn-secondary" onclick="location.href='inventory.html'">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/add_product.js?v=2"></script>
+
+</body>
+
+</html>

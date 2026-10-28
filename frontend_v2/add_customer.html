@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Customer | VASAIKAR BAKALA</title>
+
+
+    <!-- Google Font -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!--=====================================================
+         SIDEBAR
+         =====================================================-->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <i class="fa-solid fa-store"></i>
+
+            <h2>VASAIKAR BAKALA</h2>
+
+        </div>
+
+
+        <ul>
+
+
+            <!-- Dashboard -->
+
+            <li onclick="location.href='dashboard.html'">
+
+                <i class="fa-solid fa-gauge"></i>
+
+                Dashboard
+
+            </li>
+
+
+            <!-- Inventory -->
+
+            <li onclick="location.href='inventory.html'">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                Inventory
+
+            </li>
+
+
+            <!-- Billing -->
+
+            <li onclick="location.href='billing.html'">
+
+                <i class="fa-solid fa-receipt"></i>
+
+                Billing
+
+            </li>
+
+
+            <!-- Customers -->
+
+            <li class="active">
+
+                <i class="fa-solid fa-users"></i>
+
+                Customers
+
+            </li>
+
+
+            <!-- Reports -->
+
+            <li onclick="location.href='reports.html'">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reports
+
+            </li>
+
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main">
+
+
+        <header class="header">
+
+            <h1>
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Add Customer
+
+            </h1>
+
+        </header>
+
+
+
+        <!-- =================================================
+             FORM
+             ================================================= -->
+
+        <div class="form-card">
+
+
+            <form id="customerForm">
+
+
+                <!-- CUSTOMER NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Customer Name
+                    </label>
+
+                    <input type="text" id="name" placeholder="Enter customer name" required>
+
+                </div>
+
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" maxlength="10" required>
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-buttons">
+
+
+                    <button type="submit" class="btn-primary">
+
+                        <i class="fa-solid fa-save"></i>
+
+                        Save Customer
+
+                    </button>
+
+
+                    <button type="button" class="btn-secondary" onclick="location.href='customer.html'">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CORRECT JAVASCRIPT FILE
+         ===================================================== -->
+
+    <script src="js/add_customer.js"></script>
+
+
+</body>
+
+</html>
