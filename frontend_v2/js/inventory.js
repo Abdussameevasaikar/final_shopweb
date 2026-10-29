@@ -71,249 +71,109 @@ async function loadItems() {
 // DISPLAY PRODUCTS
 // =====================================================
 
+
 function displayItems(items) {
-
-    const tableBody =
-        document.getElementById(
-            "tableBody"
-        );
-
+    const tableBody = document.getElementById("tableBody");
 
     if (!tableBody) {
-
         return;
-
     }
-
 
     tableBody.innerHTML = "";
 
-
-    if (
-        !items ||
-        items.length === 0
-    ) {
-
+    if (!items || items.length === 0) {
         tableBody.innerHTML = `
-
             <tr>
-
-                <td
-                    colspan="8"
-                    style="
-                        text-align:center;
-                        padding:20px;
-                    "
-                >
-
+                <td colspan="8" style="text-align:center; padding:20px;">
                     No products found.
-
                 </td>
-
             </tr>
-
         `;
-
         return;
-
     }
 
+    items.forEach((item, index) => {
+        const quantity = Number(item.quantity) || 0;
+        const price = Number(item.price) || 0;
+        const unit = String(item.unit || "piece");
+        const variant = String(item.variant || "");
 
-    items.forEach(item => {
-
-
-        const quantity =
-            Number(item.quantity) || 0;
-
-
-        const price =
-            Number(item.price) || 0;
-
-
-        const unit =
-            String(
-                item.unit || "piece"
-            );
-
-
-        const variant =
-            String(
-                item.variant || ""
-            );
-
-
-        // ---------------------------------------------
-        // FORMAT QUANTITY
-        // ---------------------------------------------
-
-        const formattedQuantity =
-            formatQuantity(quantity);
-
-
-        // ---------------------------------------------
-        // STOCK STATUS
-        // ---------------------------------------------
+        const formattedQuantity = formatQuantity(quantity);
 
         let status;
-
         let statusClass;
 
-
         if (quantity <= 5) {
-
-            status =
-                "Low Stock";
-
-            statusClass =
-                "low-stock";
-
+            status = "Out Of Stock";
+            statusClass = "out-stock";
+        } else if (quantity <= 15) {
+            status = "low-stock";
+            statusClass = "low-stock";
+        } else {
+            status = "In Stock";
+            statusClass = "in-stock";
         }
 
-        else if (quantity <= 15) {
+        const variantDisplay = variant.trim() !== ""
+            ? escapeHTML(variant)
+            : "-";
 
-            status =
-                "Limited";
-
-            statusClass =
-                "medium-stock";
-
-        }
-
-        else {
-
-            status =
-                "In Stock";
-
-            statusClass =
-                "in-stock";
-
-        }
-
-
-        // ---------------------------------------------
-        // VARIANT DISPLAY
-        // ---------------------------------------------
-
-        const variantDisplay =
-            variant.trim() !== ""
-                ? escapeHTML(variant)
-                : "-";
-
-
-        // ---------------------------------------------
-        // UNIT DISPLAY
-        // ---------------------------------------------
-
-        const unitDisplay =
-            formatUnit(unit);
-
-
-        // ---------------------------------------------
-        // ADD ROW
-        // ---------------------------------------------
+        const unitDisplay = formatUnit(unit);
 
         tableBody.innerHTML += `
-
             <tr>
-
                 <td>
-                    ${item.id}
+                    ${index + 1}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-                        item.name
-                    )}
-
+                    ${escapeHTML(item.name)}
                 </td>
 
-
                 <td>
-
                     ${variantDisplay}
-
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-                        item.category
-                    )}
-
+                    ${escapeHTML(item.category)}
                 </td>
 
-
                 <td>
-
-                    ${formattedQuantity}
-                    ${unitDisplay}
-
+                    ${formattedQuantity}${unitDisplay}
                 </td>
 
-
                 <td>
-
                     ₹${price.toFixed(2)}
-
                 </td>
 
-
                 <td>
-
-                    <span
-                        class="badge ${statusClass}"
-                    >
-
+                    <span class="badge ${statusClass}">
                         ${status}
-
                     </span>
-
                 </td>
 
-
                 <td>
-
-
                     <button
                         class="action-btn edit-btn"
                         onclick="editItem(${item.id})"
                     >
-
-                        <i
-                            class="fa-solid fa-pen"
-                        ></i>
-
+                        <i class="fa-solid fa-pen"></i>
                         Edit
-
                     </button>
-
 
                     <button
                         class="action-btn delete-btn"
                         onclick="deleteItem(${item.id})"
                     >
-
-                        <i
-                            class="fa-solid fa-trash"
-                        ></i>
-
+                        <i class="fa-solid fa-trash"></i>
                         Delete
-
                     </button>
-
-
                 </td>
-
             </tr>
-
         `;
-
     });
-
 }
+
 
 
 // =====================================================

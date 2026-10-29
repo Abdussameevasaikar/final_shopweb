@@ -398,7 +398,8 @@ tr:hover {
     padding: 5px 10px;
     border-radius: 20px;
     color: #fff;
-    font-size: 13px;
+    font-size: 10px;
+    width: 35px;
 }
 
 .in-stock {
@@ -410,8 +411,8 @@ tr:hover {
 }
 
 .out-stock {
-    background: #dc2626;
-}
+    background: #ec2e2e;
+}   
 
 /* FORMS */
 .form-card,
